@@ -1,2 +1,2 @@
 //  treat publicIP files as empty
-module.exports = {}
+module.exports = {};

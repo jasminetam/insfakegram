@@ -13,10 +13,10 @@ import { HomeIcon } from '@heroicons/react/solid';
 
 function Header() {
   return (
-    <div className="shadow-sm border-b bg-white sticky top-0 z-50">
-      <div className="flex justify-between items-center max-w-6xl mx-5 lg:mx-auto">
+    <div className="nav">
+      <div className="navFlex">
         {/*Left*/}
-        <div className="relative hidden lg:inline-grid w-24 h-10 cursor-pointer">
+        <div className="logo hidden lg:inline-grid">
           <Image
             src="/images/logo.png"
             layout="fill"
@@ -24,7 +24,7 @@ function Header() {
             alt="logo"
           />
         </div>
-        <div className="relative lg:hidden inline-grid w-24 h-10 cursor-pointer">
+        <div className="logo lg:hidden inline-grid">
           <Image
             src="/images/instagram.png"
             layout="fill"
@@ -36,7 +36,7 @@ function Header() {
         {/*Middle*/}
         <div className="max-w-xs">
           <div className="relative mt-1 p-3 rounded-md">
-            <div className="absolute inset-y-0 pl-3 flex items-center pointer-events-none">
+            <div className="searchIcon">
               <SearchIcon className="h-5 w-5 text-gray-500" />
             </div>
             <input type="text" placeholder="Search" className="searchInput" />
@@ -48,9 +48,7 @@ function Header() {
           <MenuIcon className="h-6 md:hidden cursor-pointer" />
           <div className="relative navIcon">
             <PaperAirplaneIcon className="navIcon rotate-45" />
-            <div className="absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white">
-              3
-            </div>
+            <div className="notification">3</div>
           </div>
           <PlusCircleIcon className="navIcon" />
           <UserGroupIcon className="navIcon" />
