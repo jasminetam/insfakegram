@@ -15,11 +15,7 @@ function Post({ id, username, userImg, img, caption }: postProps) {
     <div className="bg-white my-7 border rounded-sm" data-test="component-Post">
       {/* header */}
       <div className="flex items-center p-5">
-        <img
-          src={userImg}
-          alt=""
-          className="rounded-full h-12 w-12 object-contain border p-1 mr-3"
-        />
+        <img src={userImg} alt="" className="postImg" />
         <p className="flex-1 font-bold">{username}</p>
         <DotsHorizontalIcon className="h-5" />
       </div>
@@ -46,7 +42,7 @@ function Post({ id, username, userImg, img, caption }: postProps) {
         <input
           type="text"
           placeholder="Add a comment..."
-          className="border-none flex-1 focus:ring-0 outline-none"
+          className="postInput"
         />
         <button className="font-semibold text-blue-400">Post</button>
       </form>

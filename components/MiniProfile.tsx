@@ -2,7 +2,10 @@ import React from 'react';
 
 function MiniProfile() {
   return (
-    <div className="flex items-center justify-between mt-14 ml-10">
+    <div
+      className="flex items-center justify-between mt-14 ml-10"
+      data-test="component-MiniProfile"
+    >
       <img
         src="/images/user.png"
         alt=""
