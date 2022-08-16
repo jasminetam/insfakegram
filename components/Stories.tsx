@@ -1,34 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { faker } from '@faker-js/faker';
 import Story from './Story';
+import { createRandomUser } from '../utils/fakerInfo';
 
-interface User {
-  userId: string;
-  username: string;
-  email: string;
-  avatar: string;
-  password: string;
-  birthdate: Date;
-  registeredAt: Date;
-}
 
-export const USERS: User[] = [];
-
-export function createRandomUser(): User {
-  return {
-    userId: faker.datatype.uuid(),
-    username: faker.internet.userName(),
-    email: faker.internet.email(),
-    avatar: faker.image.avatar(),
-    password: faker.internet.password(),
-    birthdate: faker.date.birthdate(),
-    registeredAt: faker.date.past(),
-  };
-}
-
-Array.from({ length: 10 }).forEach(() => {
-  USERS.push(createRandomUser());
-});
 
 function Stories() {
   const [suggestions, setSuggestions] = useState<any>([]);
@@ -36,7 +10,7 @@ function Stories() {
   useEffect(() => {
     const suggestions = [...Array(20)].map((_, i) => ({
       ...createRandomUser(),
-      id: 1,
+      id: i,
     }));
     setSuggestions(suggestions);
   }, []);
