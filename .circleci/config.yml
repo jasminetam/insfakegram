@@ -5,7 +5,7 @@ version: 2
 jobs:
     build:
         docker:
-            - image: cimg/node:17.0.0
+            - image: cimg/node:16.13.0
         steps:
             - checkout
             - run: echo "build project"
@@ -13,7 +13,7 @@ jobs:
             - run: yarn build
     test:
         docker:
-            - image: cimg/node:17.0.0
+            - image: cimg/node:16.13.0
         steps:
             - checkout
             - run: echo "Running tests"

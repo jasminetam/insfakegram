@@ -15,10 +15,10 @@ html body {
     @apply shadow-sm border-b bg-white sticky top-0 z-50;
   }
   .navFlex {
-    @apply flex justify-between items-center max-w-6xl mx-5 lg:mx-auto;
+    @apply flex justify-between items-center max-w-6xl sm:mx-5 lg:mx-auto;
   }
   .logo {
-    @apply relative w-24 h-10 cursor-pointer;
+    @apply relative w-16 h-10 sm:w-28 sm:h-10 cursor-pointer;
   }
   .searchIcon {
     @apply absolute inset-y-0 pl-3 flex items-center pointer-events-none;

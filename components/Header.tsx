@@ -35,7 +35,7 @@ function Header() {
 
         {/*Middle*/}
         <div className="max-w-xs">
-          <div className="relative mt-1 p-3 rounded-md">
+          <div className="relative mt-1 p-2 sm:p-3 rounded-md">
             <div className="searchIcon">
               <SearchIcon className="h-5 w-5 text-gray-500" />
             </div>
@@ -45,7 +45,7 @@ function Header() {
         {/*Right*/}
         <div className="flex items-center justify-end space-x-4">
           <HomeIcon className="navIcon" />
-          <MenuIcon className="h-6 md:hidden cursor-pointer" />
+          <MenuIcon className="h-8 md:hidden cursor-pointer" />
           <div className="relative navIcon">
             <PaperAirplaneIcon className="navIcon rotate-45" />
             <div className="notification">3</div>
@@ -56,7 +56,7 @@ function Header() {
           <img
             src="/images/user.png"
             alt="user"
-            className="h-10 rounded-full cursor-pointer"
+            className="h-8 sm:h-10 rounded-full cursor-pointer"
           />
         </div>
       </div>
