@@ -40,7 +40,7 @@ const posts: postProps[] = [
 
 const Posts = (): JSX.Element => {
   return (
-    <div>
+    <div data-test="component-Posts">
       {posts.map((post) => (
         <Post
           key={post.id}

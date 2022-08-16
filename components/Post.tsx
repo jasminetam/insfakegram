@@ -12,7 +12,7 @@ import { postProps } from '../utils/interface';
 
 function Post({ id, username, userImg, img, caption }: postProps) {
   return (
-    <div className="bg-white my-7 border rounded-sm">
+    <div className="bg-white my-7 border rounded-sm" data-test="component-Post">
       {/* header */}
       <div className="flex items-center p-5">
         <img
