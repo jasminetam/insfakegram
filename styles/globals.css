@@ -10,6 +10,7 @@ html body {
 }
 
 @layer components {
+  /* nav styles */
   .nav {
     @apply shadow-sm border-b bg-white sticky top-0 z-50;
   }
@@ -31,6 +32,7 @@ html body {
   .notification {
     @apply absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white;
   }
+  /* feed styles */
   .feedWrapper {
     @apply grid grid-cols-1 md:grid-cols-2 md:max-w-3xl xl:grid-cols-3 xl:max-w-6xl mx-auto;
   }
@@ -42,5 +44,8 @@ html body {
   }
   .storyUsername {
     @apply text-xs w-14 truncate text-center;
+  }
+  .postIcons {
+    @apply h-7 hover:scale-125 cursor-pointer transition-all duration-150 ease-out;
   }
 }
