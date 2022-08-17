@@ -6,7 +6,6 @@ interface Props {
 }
 
 function Story({ img, username }: Props) {
-  console.log(img);
   return (
     <div data-test="component-Story">
       <img className="storyImg" src={img} alt="" />

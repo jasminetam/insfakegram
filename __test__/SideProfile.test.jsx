@@ -1,13 +1,13 @@
-import { render, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
-import Post from '../components/Post';
+import SideProfile from "../components/SideProfile"
 import { SessionProvider } from 'next-auth/react';
 
-describe('Post test', () => {
+describe('SideProfile test', () => {
   const setup = (props = {}, state = null, session = {}) => {
     return shallow(
       <SessionProvider session={session}>
-        <Post {...props} />
+        <SideProfile {...props} />
       </SessionProvider>
     );
   };
@@ -16,7 +16,8 @@ describe('Post test', () => {
     return wrapper.find(`[data-test="${name}"]`);
   };
 
-  it('expect Post component is rendered without crashing', () => {
+  it('expect SideProfile component is rendered without crashing', () => {
     const wrapper = setup();
   });
+
 });

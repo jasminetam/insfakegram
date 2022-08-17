@@ -1,7 +1,7 @@
 import React from 'react';
 import Stories from './Stories';
 import Posts from './Posts';
-import MiniProfile from './MiniProfile';
+import SideProfile from './SideProfile';
 import Suggestions from './Suggestions';
 import { useSession } from 'next-auth/react';
 
@@ -16,7 +16,7 @@ function Feed() {
       {session && (
         <section className="hidden xl:inline-grid md:col-span-1">
           <div className="fixed top-20">
-            <MiniProfile />
+            <SideProfile />
             <Suggestions />
           </div>
         </section>

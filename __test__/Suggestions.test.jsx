@@ -1,10 +1,15 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import Suggestions from '../components/Suggestions';
+import { SessionProvider } from 'next-auth/react';
 
 describe('Suggestions test', () => {
-  const setup = (props = {}, state = null) => {
-    return shallow(<Suggestions {...props} />);
+  const setup = (props = {}, state = null, session = {}) => {
+    return shallow(
+      <SessionProvider session={session}>
+        <Suggestions {...props} />
+      </SessionProvider>
+    );
   };
 
   const findJSXByAttr = (name, wrapper) => {
@@ -13,11 +18,5 @@ describe('Suggestions test', () => {
 
   it('expect Suggestions component is rendered without crashing', () => {
     const wrapper = setup();
-  });
-
-  it('expect component-Suggestions is rendered', () => {
-    const wrapper = setup();
-    const Suggestions = findJSXByAttr('component-Suggestions', wrapper);
-    expect(Suggestions.length).toBe(1);
   });
 });

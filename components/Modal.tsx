@@ -1,6 +1,6 @@
-import React, { Fragment, useRef, useState } from 'react';
+import React, { Fragment, MutableRefObject, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { modalState } from '../atoms/modalAtom';
+import { modalState } from '../utils/modalAtom';
 import { Dialog, Transition } from '@headlessui/react';
 import { CameraIcon } from '@heroicons/react/outline';
 import { db, storage } from '../utils/firebase';
@@ -14,24 +14,26 @@ import {
 import { ref, getDownloadURL, uploadString } from 'firebase/storage';
 import { useSession } from 'next-auth/react';
 
+
+
 function Modal() {
   const { data: session }: any = useSession();
   const [show, setShow] = useRecoilState<boolean>(modalState);
-  const fileSelectorRef = useRef(null);
-  const captionRef = useRef(null);
+  const fileSelectorRef = useRef<HTMLInputElement | null>(null);
+  const captionRef = useRef<HTMLInputElement | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState<any | ArrayBuffer>('');
 
   const uploadPost = async () => {
     if (loading) return;
     setLoading(true);
     const docRef = await addDoc(collection(db, 'posts'), {
       username: session.user.username,
-      caption: captionRef.current.value,
+      caption: captionRef?.current?.value,
       profileImg: session.user.image,
       timestamp: serverTimestamp(),
     });
-    console.log('New doc added with ID', docRef.id);
+
     const imageRef = ref(storage, `posts/${docRef.id}/image`);
 
     await uploadString(imageRef, selectedFile, 'data_url').then(
@@ -47,13 +49,13 @@ function Modal() {
     setSelectedFile(null);
   };
 
-  const addImage = (e) => {
+  const addImage = (e: any) => {
     const reader = new FileReader();
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
     }
-    reader.onload = (readerEvent) => {
-      setSelectedFile(readerEvent.target.result);
+    reader.onload = (readerEvent: ProgressEvent<FileReader>) => {
+      setSelectedFile(readerEvent?.target?.result);
     };
   };
 
@@ -99,7 +101,7 @@ function Modal() {
                   />
                 ) : (
                   <div
-                    onClick={() => fileSelectorRef.current.click()}
+                    onClick={() => fileSelectorRef?.current?.click()}
                     className="modalUpload"
                   >
                     <CameraIcon

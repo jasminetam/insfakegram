@@ -2,13 +2,13 @@ import React from 'react';
 import { signOut, useSession } from 'next-auth/react';
 
 
-const MiniProfile = () => {
+const SideProfile = () => {
   const { data: session }: any = useSession()
-  console.log(session)
+
   return (
     <div
       className="flex items-center justify-between mt-14 ml-10"
-      data-test="component-MiniProfile"
+      data-test="component-SideProfile"
     >
       <img
         src={session?.user?.image}
@@ -24,4 +24,4 @@ const MiniProfile = () => {
   );
 }
 
-export default MiniProfile;
+export default SideProfile;

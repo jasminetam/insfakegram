@@ -12,11 +12,14 @@ import { HomeIcon } from '@heroicons/react/solid';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { modalState } from '../atoms/modalAtom';
+import { modalState } from '../utils/modalAtom';
+
+
+
 
 const Header = () => {
-  const { data: session } = useSession();
-  const [show, setShow] = useRecoilState<boolean>(modalState)
+  const { data: session }: any = useSession();
+  const [show, setShow] = useRecoilState<boolean>(modalState);
   const router = useRouter();
 
   return (
@@ -65,11 +68,14 @@ const Header = () => {
                 <PaperAirplaneIcon className="navIcon rotate-45" />
                 <div className="notification">3</div>
               </div>
-              <PlusCircleIcon className="navIcon" onClick={() => setShow(true)} />
+              <PlusCircleIcon
+                className="navIcon"
+                onClick={() => setShow(true)}
+              />
               <UserGroupIcon className="navIcon" />
               <HeartIcon className="navIcon" />
               <img
-                src={session.user?.image}
+                src={session?.user?.image}
                 alt="user"
                 className="h-8 sm:h-10 rounded-full cursor-pointer"
                 onClick={() => signOut()}

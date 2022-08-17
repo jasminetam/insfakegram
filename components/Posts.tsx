@@ -3,16 +3,17 @@ import Post from './Post';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { db } from '../utils/firebase';
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { collection, DocumentData, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { postsProps } from '../utils/interface';
 
-const Posts = (): JSX.Element => {
-  const [posts, setPosts] = useState([]);
+const Posts = () => {
+  const [posts, setPosts] = useState<postsProps[]>([]);
 
   useEffect(
     () =>
       onSnapshot(
         query(collection(db, 'posts'), orderBy('timestamp', 'desc')),
-        (snapshot) => {
+        (snapshot: DocumentData) => {
           setPosts(snapshot.docs);
         }
       ),
