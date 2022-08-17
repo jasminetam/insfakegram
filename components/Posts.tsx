@@ -27,7 +27,7 @@ const Posts = ({ searchResults }: any) => {
   );
   return (
     <div data-test="component-Posts">
-      {searchResults
+      {searchResults?.length > 0 
         ? searchResults.map((post: any) => (
             <Post
               key={post.id}
