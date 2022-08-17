@@ -10,16 +10,20 @@ import {
 } from '@heroicons/react/outline';
 import { HomeIcon } from '@heroicons/react/solid';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
-function Header() {
+const Header = () => {
   const { data: session } = useSession();
-  console.log(session);
+  const router = useRouter();
 
   return (
     <div className="nav">
       <div className="navFlex">
         {/*Left*/}
-        <div className="logo hidden lg:inline-grid">
+        <div
+          onClick={() => router.push('/')}
+          className="logo hidden lg:inline-grid"
+        >
           <Image
             src="/images/logo.png"
             layout="fill"
@@ -27,7 +31,10 @@ function Header() {
             alt="logo"
           />
         </div>
-        <div className="logo lg:hidden inline-grid">
+        <div
+          onClick={() => router.push('/')}
+          className="logo lg:hidden inline-grid"
+        >
           <Image
             src="/images/instagram.png"
             layout="fill"
@@ -47,7 +54,7 @@ function Header() {
         </div>
         {/*Right*/}
         <div className="flex items-center justify-end space-x-4">
-          <HomeIcon className="navIcon" />
+          <HomeIcon className="navIcon" onClick={() => router.push('/')} />
           <MenuIcon className="h-8 md:hidden cursor-pointer" />
           {session ? (
             <>
@@ -62,16 +69,16 @@ function Header() {
                 src={session.user?.image}
                 alt="user"
                 className="h-8 sm:h-10 rounded-full cursor-pointer"
-                onClick={() => signOut}
+                onClick={() => signOut()}
               />
             </>
           ) : (
-            <button onClick={() => signIn}>Sign In</button>
+            <button onClick={() => signIn()}>Sign In</button>
           )}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Header;
