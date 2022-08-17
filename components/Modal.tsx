@@ -3,20 +3,51 @@ import { useRecoilState } from 'recoil';
 import { modalState } from '../atoms/modalAtom';
 import { Dialog, Transition } from '@headlessui/react';
 import { CameraIcon } from '@heroicons/react/outline';
+import { db, storage } from '../utils/firebase';
+import {
+  addDoc,
+  serverTimestamp,
+  collection,
+  updateDoc,
+  doc,
+} from 'firebase/firestore';
+import { ref, getDownloadURL, uploadString } from 'firebase/storage';
+import { useSession } from 'next-auth/react';
 
 function Modal() {
+  const { data: session }: any = useSession();
   const [show, setShow] = useRecoilState<boolean>(modalState);
-  const filePickerRef = useRef(null);
+  const fileSelectorRef = useRef(null);
   const captionRef = useRef(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [selectedFile, setSelectedFile] = useState(null);
 
   const uploadPost = async () => {
-      if (loading) return;
-      setLoading(true)
+    if (loading) return;
+    setLoading(true);
+    const docRef = await addDoc(collection(db, 'posts'), {
+      username: session.user.username,
+      caption: captionRef.current.value,
+      profileImg: session.user.image,
+      timestamp: serverTimestamp(),
+    });
+    console.log('New doc added with ID', docRef.id);
+    const imageRef = ref(storage, `posts/${docRef.id}/image`);
+
+    await uploadString(imageRef, selectedFile, 'data_url').then(
+      async (snapshot) => {
+        const downloadURL = await getDownloadURL(imageRef);
+        await updateDoc(doc(db, 'posts', docRef.id), {
+          image: downloadURL,
+        });
+      }
+    );
+    setShow(false);
+    setLoading(false);
+    setSelectedFile(null);
   };
 
-  const addImageToPost = (e) => {
+  const addImage = (e) => {
     const reader = new FileReader();
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
@@ -68,11 +99,11 @@ function Modal() {
                   />
                 ) : (
                   <div
-                    onClick={() => filePickerRef.current.click()}
+                    onClick={() => fileSelectorRef.current.click()}
                     className="modalUpload"
                   >
                     <CameraIcon
-                      className="h-6 w-6 text-red-600 cursor-pointer"
+                      className="h-6 w-6 text-red-600"
                       aria-hidden="true"
                     />
                   </div>
@@ -88,10 +119,10 @@ function Modal() {
                     {/* Input for file */}
                     <div>
                       <input
-                        ref={filePickerRef}
+                        ref={fileSelectorRef}
                         type="file"
                         hidden
-                        onChange={addImageToPost}
+                        onChange={addImage}
                       />
                     </div>
                     {/* Input for caption */}
@@ -109,11 +140,11 @@ function Modal() {
                 <div className="mt-5 sm:mt-6">
                   <button
                     type="button"
-                    // disabled={!selectedFile}
+                    disabled={!selectedFile}
                     className="modalButton"
-                    // onClick={uploadPost}
+                    onClick={uploadPost}
                   >
-                    Upload Post
+                    {loading ? 'Uploading' : 'Upload Post'}
                   </button>
                 </div>
               </div>

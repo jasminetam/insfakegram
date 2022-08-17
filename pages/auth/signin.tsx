@@ -10,7 +10,7 @@ const signIn = ({ providers }: Props) => {
   return (
     <div>
       <Header />
-      <div className="flex flex-col items-center justify-center min-h-screen py-2 -mt-56 px-14 text-center">
+      <div className="signInWrapper">
         <img className="w-80" src="/images/logo.png" alt="" />
         <p className="font-xs italic">
           This is a instagram clone site which is built for learning and

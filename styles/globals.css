@@ -55,6 +55,11 @@ html body {
   .postInput {
     @apply border-none flex-1 focus:ring-0 outline-none;
   }
+  /* SignIn */
+  .signInWrapper {
+    @apply flex flex-col items-center justify-center min-h-screen py-2 -mt-56 px-14 text-center;
+  }
+
   /* Modal */
   .modal {
     @apply flex items-end justify-center min-h-[800px] sm:min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0;
@@ -69,7 +74,7 @@ html body {
     @apply inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6;
   }
   .modalUpload {
-    @apply mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100;
+    @apply mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 cursor-pointer;
   }
   .modalButton {
     @apply inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed hover:disabled:bg-gray-300;
