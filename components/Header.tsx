@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import { AiOutlineInstagram } from 'react-icons/ai';
 import {
   SearchIcon,
   PlusCircleIcon,
@@ -10,8 +9,12 @@ import {
   MenuIcon,
 } from '@heroicons/react/outline';
 import { HomeIcon } from '@heroicons/react/solid';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 function Header() {
+  const { data: session } = useSession();
+  console.log(session);
+
   return (
     <div className="nav">
       <div className="navFlex">
@@ -46,18 +49,25 @@ function Header() {
         <div className="flex items-center justify-end space-x-4">
           <HomeIcon className="navIcon" />
           <MenuIcon className="h-8 md:hidden cursor-pointer" />
-          <div className="relative navIcon">
-            <PaperAirplaneIcon className="navIcon rotate-45" />
-            <div className="notification">3</div>
-          </div>
-          <PlusCircleIcon className="navIcon" />
-          <UserGroupIcon className="navIcon" />
-          <HeartIcon className="navIcon" />
-          <img
-            src="/images/user.png"
-            alt="user"
-            className="h-8 sm:h-10 rounded-full cursor-pointer"
-          />
+          {session ? (
+            <>
+              <div className="relative navIcon">
+                <PaperAirplaneIcon className="navIcon rotate-45" />
+                <div className="notification">3</div>
+              </div>
+              <PlusCircleIcon className="navIcon" />
+              <UserGroupIcon className="navIcon" />
+              <HeartIcon className="navIcon" />
+              <img
+                src={session.user?.image}
+                alt="user"
+                className="h-8 sm:h-10 rounded-full cursor-pointer"
+                onClick={() => signOut}
+              />
+            </>
+          ) : (
+            <button onClick={() => signIn}>Sign In</button>
+          )}
         </div>
       </div>
     </div>
