@@ -99,7 +99,7 @@ function Post({ id, username, userImg, img, caption }: postProps) {
       <div className="flex items-center p-5">
         <img src={userImg} alt="" className="postImg" />
         <p className="flex-1 font-bold">{username}</p>
-        <DotsHorizontalIcon className="h-5" />
+        <DotsHorizontalIcon className="h-5 text-gray-300" />
       </div>
       {/* img */}
       <img src={img} alt="" className="object-cover w-full" />
@@ -115,10 +115,10 @@ function Post({ id, username, userImg, img, caption }: postProps) {
             ) : (
               <HeartIcon className="postIcons" onClick={likeHandler} />
             )}
-            <ChatIcon className="postIcons" />
-            <PaperAirplaneIcon className="postIcons" />
+            <ChatIcon className="postIcons text-gray-300" />
+            <PaperAirplaneIcon className="postIcons text-gray-300" />
           </div>
-          <BookmarkIcon className="postIcons" />
+          <BookmarkIcon className="postIcons text-gray-300" />
         </div>
       )}
       {/* caption */}
@@ -162,7 +162,7 @@ function Post({ id, username, userImg, img, caption }: postProps) {
             className="postInput"
           />
           <button
-            className="font-semibold text-blue-400"
+            className="font-semibold text-blue-400 cursor-pointer"
             type="submit"
             onClick={submitComment}
             disabled={!comment.trim()}
