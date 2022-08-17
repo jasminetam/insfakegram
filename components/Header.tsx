@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import {
   SearchIcon,
@@ -14,10 +14,7 @@ import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../utils/modalAtom';
 
-
-
-
-const Header = () => {
+const Header = ({ searchInput, handleChange }: any) => {
   const { data: session }: any = useSession();
   const [show, setShow] = useRecoilState<boolean>(modalState);
   const router = useRouter();
@@ -55,7 +52,13 @@ const Header = () => {
             <div className="searchIcon">
               <SearchIcon className="h-5 w-5 text-gray-500" />
             </div>
-            <input type="text" placeholder="Search" className="searchInput" />
+            <input
+              type="text"
+              placeholder="Search users or captions"
+              className="searchInput"
+              value={searchInput}
+              onChange={handleChange}
+            />
           </div>
         </div>
         {/*Right*/}
@@ -65,15 +68,15 @@ const Header = () => {
           {session ? (
             <>
               <div className="relative navIcon">
-                <PaperAirplaneIcon className="navIcon rotate-45" />
+                <PaperAirplaneIcon className="navIcon rotate-45 text-gray-300" />
                 <div className="notification">3</div>
               </div>
               <PlusCircleIcon
                 className="navIcon"
                 onClick={() => setShow(true)}
               />
-              <UserGroupIcon className="navIcon" />
-              <HeartIcon className="navIcon" />
+              <UserGroupIcon className="navIcon text-gray-300" />
+              <HeartIcon className="navIcon text-gray-300" />
               <img
                 src={session?.user?.image}
                 alt="user"

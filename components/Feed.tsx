@@ -5,13 +5,13 @@ import SideProfile from './SideProfile';
 import Suggestions from './Suggestions';
 import { useSession } from 'next-auth/react';
 
-function Feed() {
+function Feed({searchResults}: any) {
   const { data: session } = useSession();
   return (
     <div className={`feedWrapper ${!session && "!grid-cols-1 !max-w-3xl"}`}>
       <section className="col-span-2">
         <Stories />
-        <Posts />
+        <Posts searchResults={searchResults} />
       </section>
       {session && (
         <section className="hidden xl:inline-grid md:col-span-1">

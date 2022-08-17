@@ -3,10 +3,16 @@ import Post from './Post';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { db } from '../utils/firebase';
-import { collection, DocumentData, onSnapshot, orderBy, query } from 'firebase/firestore';
+import {
+  collection,
+  DocumentData,
+  onSnapshot,
+  orderBy,
+  query,
+} from 'firebase/firestore';
 import { postsProps } from '../utils/interface';
 
-const Posts = () => {
+const Posts = ({ searchResults }: any) => {
   const [posts, setPosts] = useState<postsProps[]>([]);
 
   useEffect(
@@ -19,19 +25,29 @@ const Posts = () => {
       ),
     [db]
   );
-  console.log(posts);
   return (
     <div data-test="component-Posts">
-      {posts.map((post) => (
-        <Post
-          key={post.id}
-          id={post.id}
-          img={post.data().image}
-          username={post.data().username}
-          userImg={post.data().profileImg}
-          caption={post.data().caption}
-        />
-      ))}
+      {searchResults.length > 0
+        ? searchResults.map((post: any) => (
+            <Post
+              key={post.id}
+              id={post.id}
+              img={post.data().image}
+              username={post.data().username}
+              userImg={post.data().profileImg}
+              caption={post.data().caption}
+            />
+          ))
+        : posts.map((post) => (
+            <Post
+              key={post.id}
+              id={post.id}
+              img={post.data().image}
+              username={post.data().username}
+              userImg={post.data().profileImg}
+              caption={post.data().caption}
+            />
+          ))}
     </div>
   );
 };
