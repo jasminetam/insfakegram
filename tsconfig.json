@@ -16,6 +16,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "__test__/Header.test.jsx", "__test__/setupTests.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "__test__/Header.test.jsx", "__test__/setupTests.js", "types/**/*.ts"],
   "exclude": ["node_modules"]
 }
