@@ -6,7 +6,7 @@ import Link from 'next/link';
 function DropdownMenu({ onClick }: any) {
   return (
     <div>
-      <Menu as="div" className="items-center relative inline-block md:hidden">
+      <Menu as="div" className="items-center relative inline-block md:hidden" data-test="component-DropdownMenu">
         <Menu.Button className="text-gray-700 p-2 text-xl rounded-md hover:ring-2 hover:ring-gray-300 dark:text-gray-200">
         <MenuIcon className="h-8 cursor-pointer" />
         </Menu.Button>
