@@ -3,11 +3,9 @@ import Story from './Story';
 import { createRandomUser } from '../utils/fakerInfo';
 import { useSession } from 'next-auth/react';
 
-
-
 function Stories() {
   const [suggestions, setSuggestions] = useState<any>([]);
-  const {data: session}: any = useSession()
+  const { data: session }: any = useSession();
 
   useEffect(() => {
     const suggestions = [...Array(20)].map((_, i) => ({
