@@ -15,7 +15,6 @@ import { useRecoilState } from 'recoil';
 import { modalState } from '../utils/modalAtom';
 import DropdownMenu from './DropdownMenu';
 
-
 const Header = ({ searchInput, handleChange }: any) => {
   const { data: session }: any = useSession();
   const [show, setShow] = useRecoilState<boolean>(modalState);
@@ -65,8 +64,8 @@ const Header = ({ searchInput, handleChange }: any) => {
         </div>
         {/*Right*/}
         <div className="flex items-center justify-end space-x-4">
-          <HomeIcon className="navIcon" onClick={() => router.push('/')} />
-          <DropdownMenu onClick={() => setShow(true)} />
+          <HomeIcon className={`homeIcon ${session && 'navIcon'}`} onClick={() => router.push('/')} />
+          {session && <DropdownMenu onClick={() => setShow(true)} />}
           {session ? (
             <>
               <div className="relative navIcon">
@@ -82,12 +81,14 @@ const Header = ({ searchInput, handleChange }: any) => {
               <img
                 src={session?.user?.image}
                 alt="user"
-                className="h-8 sm:h-10 rounded-full cursor-pointer"
+                className="h-7 sm:h-10 rounded-full cursor-pointer"
                 onClick={() => signOut()}
               />
             </>
           ) : (
-            <button className="pr-3" onClick={() => signIn()}>Sign In</button>
+            <button className="pr-3" onClick={() => signIn()}>
+              Sign In
+            </button>
           )}
         </div>
       </div>
