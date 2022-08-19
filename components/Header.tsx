@@ -81,7 +81,7 @@ const Header = ({ searchInput, handleChange }: any) => {
               <img
                 src={session?.user?.image}
                 alt="user"
-                className="h-7 sm:h-10 rounded-full cursor-pointer pr-1"
+                className="h-7 sm:h-10 rounded-full cursor-pointer"
                 onClick={() => signOut()}
               />
             </>

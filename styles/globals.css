@@ -27,7 +27,7 @@ html body {
     @apply bg-gray-50 block w-full pl-10 sm:text-sm border-gray-300 rounded-md focus:ring-black focus:border-black;
   }
   .homeIcon {
-    @apply h-7 pl-1 inline-flex cursor-pointer hover:scale-125 transition-all duration-150 ease-out;
+    @apply h-7 inline-flex cursor-pointer hover:scale-125 transition-all duration-150 ease-out;
   }
   .navIcon {
     @apply hidden h-6 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-150 ease-out;
