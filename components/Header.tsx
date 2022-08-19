@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import {
   SearchIcon,
@@ -13,6 +13,8 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../utils/modalAtom';
+import DropdownMenu from './DropdownMenu';
+
 
 const Header = ({ searchInput, handleChange }: any) => {
   const { data: session }: any = useSession();
@@ -54,7 +56,7 @@ const Header = ({ searchInput, handleChange }: any) => {
             </div>
             <input
               type="text"
-              placeholder="Search users or captions"
+              placeholder="Search"
               className="searchInput"
               value={searchInput}
               onChange={handleChange}
@@ -64,7 +66,7 @@ const Header = ({ searchInput, handleChange }: any) => {
         {/*Right*/}
         <div className="flex items-center justify-end space-x-4">
           <HomeIcon className="navIcon" onClick={() => router.push('/')} />
-          <MenuIcon className="h-8 md:hidden cursor-pointer" />
+          <DropdownMenu onClick={() => setShow(true)} />
           {session ? (
             <>
               <div className="relative navIcon">
@@ -85,7 +87,7 @@ const Header = ({ searchInput, handleChange }: any) => {
               />
             </>
           ) : (
-            <button onClick={() => signIn()}>Sign In</button>
+            <button className="pr-3" onClick={() => signIn()}>Sign In</button>
           )}
         </div>
       </div>

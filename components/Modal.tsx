@@ -63,7 +63,7 @@ function Modal() {
     <Transition.Root show={show} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed z-10 inset-0 overflow-y-suto"
+        className="fixed z-10 inset-0 overflow-y-auto"
         onClose={setShow}
       >
         <div className="modal">
